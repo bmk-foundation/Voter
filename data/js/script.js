@@ -537,6 +537,38 @@ window.addEventListener('DOMContentLoaded', () => {
         loadHomeStats();
     }
 });
+/**
+ * ব্যবহারের নিয়মাবলী মডাল নিয়ন্ত্রণ
+ */
+
+// মডাল দেখানোর ফাংশন
+function showInstructions() {
+    const modal = document.getElementById('instruction-modal');
+    if (modal) {
+        modal.classList.remove('hidden');
+        // অ্যানিমেশনের জন্য ডিসপ্লে ব্লক করা
+        modal.style.display = 'flex';
+        // সাইড মেনু খোলা থাকলে তা বন্ধ করে দেওয়া (ভালো ইউজার এক্সপেরিয়েন্সের জন্য)
+        if (typeof closeNav === "function") closeNav();
+    }
+}
+
+// মডাল বন্ধ করার ফাংশন
+function closeInstructions() {
+    const modal = document.getElementById('instruction-modal');
+    if (modal) {
+        modal.classList.add('hidden');
+        modal.style.display = 'none';
+    }
+}
+
+// মডালের বাইরে ক্লিক করলে মডাল বন্ধ হবে
+window.onclick = function(event) {
+    const modal = document.getElementById('instruction-modal');
+    if (event.target == modal) {
+        closeInstructions();
+    }
+}
 
 function processBarcodeData(data) {
     const monthMap = {
