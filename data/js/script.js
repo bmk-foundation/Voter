@@ -14,6 +14,50 @@ if (!firebase.apps.length) {
 }
 const database = firebase.database();
 
+let deferredPrompt;
+const slider = document.getElementById('install-slider');
+const installBtn = document.getElementById('install-btn');
+const closeBtn = document.getElementById('close-slider');
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    // ডিফল্ট প্রম্পট বন্ধ করা
+    e.preventDefault();
+    deferredPrompt = e;
+    
+    // স্লাইডার এলিমেন্টটি পেজে আছে কি না চেক করে দেখানো
+    if (slider) {
+        setTimeout(() => {
+            slider.style.display = 'flex'; // CSS-এ hidden থাকলে display ঠিক করা
+            slider.classList.add('show-slider');
+        }, 3000);
+    }
+});
+
+if (installBtn) {
+    installBtn.addEventListener('click', async () => {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            if (outcome === 'accepted') {
+                console.log('User installed the app');
+            }
+            deferredPrompt = null;
+            if (slider) slider.classList.remove('show-slider');
+            // অল্প সময় পর পুরোপুরি হাইড করে দেওয়া
+            setTimeout(() => { if (slider) slider.style.display = 'none'; }, 500);
+        }
+    });
+}
+
+if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+        if (slider) {
+            slider.classList.remove('show-slider');
+            setTimeout(() => { slider.style.display = 'none'; }, 500);
+        }
+    });
+}
+
 /**
  * ২. গ্লোবাল ভেরিয়েবল ও ডেটা সেটআপ
  */
