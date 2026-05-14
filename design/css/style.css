@@ -1,0 +1,1050 @@
+:root {
+    --primary: #023823;
+    --accent: #fff;
+    --bg: #004529;
+    --border: #0CFF17
+}
+
+
+body {
+        font-family: 'adorsho', sans-serif !important;
+    margin: 0; 
+    background: var(--bg); color: #fff; overflow-x: hidden;
+}
+/* এই ক্লাসটি বডিতে থাকলে স্ক্রল বন্ধ হয়ে যাবে */
+.no-scroll {
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* ডার্ক মোড স্টাইল */
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+body.dark-mode .voter-card {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border: 1px solid #333;
+}
+
+body.dark-mode #side-menu {
+    background-color: #1a1a1a;
+}
+
+body.dark-mode #search-section, body.dark-mode #home-section {
+    background-color: #121212;
+}
+
+body.dark-mode input, body.dark-mode select{
+    background-color: #2c2c2c;
+    color: white;
+    border: 1px solid #444;
+}
+/*-----------------------------*/
+        @font-face {
+            font-family: 'NameFont';
+            src: url('Codepotro Abu Sayed.ttf') format('truetype');}
+
+@font-face {
+    font-family: 'adorsho';
+    src: url('../../write/font/AdorshoLip.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* ফন্ট লোড হওয়ার আগ পর্যন্ত সিস্টেম ফন্ট দেখাবে */
+}
+
+    
+.total-voter-font {
+    font-family: 'adorsho', sans-serif !important;
+}
+
+/*------------------------------*/
+p,#totalDisplay {
+font-family: 'adorsho', san-serif;}
+h3, .areainfo {
+font-family: 'adorsho', sans-serif;}
+
+.side-nav, .square-btn, .Elaka{
+font-family: 'adorsho', sans-serif;
+}
+#search-title {
+    font-family: 'adorsho', sans-serif !important;
+}
+select {
+    font-family: 'adorsho', 'SolaimanLipi', sans-serif !important;
+    font-size: 14px
+}
+
+select option {
+    font-family: 'adorsho', 'SolaimanLipi', sans-serif;
+    background-color: #023823;
+    color: #fff;
+}
+#dynamic-input-area input {
+    font-family: 'adorsho', 'SolaimanLipi', sans-serif !important;
+    font-size: 15px;
+    color: #fff;
+}
+
+#dynamic-input-area input::placeholder {
+    font-family: 'adorsho', sans-serif;
+    opacity: 0.7;
+    font-size: 13px;
+}
+
+#scanner-wrapper p{    font-family: 'adorsho', 'SolaimanLipi', sans-serif !important;}
+/*-----------------------------*/
+ /* মোডাল ব্যাকগ্রাউন্ড */
+    .modal-overlay {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        display: flex; justify-content: center; align-items: center;
+        z-index: 9999; transition: 0.3s;
+    }
+    .hidden { display: none; }
+
+    /* মোডাল কার্ড */
+    .modal-card {
+        background: #fff; width: 90%; max-width: 400px;
+        border-radius: 15px; overflow: hidden;
+        animation: slideIn 0.3s ease-out;
+    }
+    @keyframes slideIn { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+    .modal-header {
+        background: #007bff; color: white; padding: 15px;
+        display: flex; justify-content: space-between; align-items: center;
+    }
+    .modal-header h3 { margin: 0; font-size: 18px; }
+    .close-btn { background: none; border: none; color: white; font-size: 24px; cursor: pointer; }
+
+    .modal-body { padding: 20px; }
+    .step-item { display: flex; align-items: flex-start; margin-bottom: 15px; }
+    .step-num {
+        background: #e7f1ff; color: #007bff; font-weight: bold;
+        min-width: 28px; height: 28px; border-radius: 50%;
+        display: flex; justify-content: center; align-items: center;
+        margin-right: 12px; font-size: 14px;
+    }
+    .step-item p { margin: 0; font-size: 14.5px; color: #444; line-height: 1.5; }
+
+    .modal-footer { padding: 15px; text-align: center; border-top: 1px solid #eee; }
+    .got-it-btn {
+        background: #28a745; color: white; border: none;
+        padding: 10px 25px; border-radius: 50px; cursor: pointer; font-weight: bold;
+    }
+
+
+.modal {
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: var(--primary);
+    padding: px;
+    border-radius: 15px;
+    text-align: center;
+    align-items: center;
+    position: relative;
+    width: 80%;
+    max-width: 300px;
+    animation: slideIn 0.3s ease-out;
+}
+.modal-content h3, .modal-content p{
+color: white;
+}
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.dev-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #004529;
+    margin-bottom: 15px;
+    /* নিচের লাইনটি ছবিকে চ্যাপ্টা হওয়া থেকে বাঁচাবে */
+    object-fit: cover; 
+    /* ছবির মাঝখানের অংশ ফোকাস করবে */
+    object-position: center; 
+}
+/* মেইন সোশ্যাল কন্টেইনার */
+.social-links {
+    display: flex !important;
+    flex-direction: row !important; /* বাধ্যতামূলকভাবে এক লাইনে রাখবে */
+    flex-wrap: nowrap !important;   /* কোনোভাবেই নিচে নামতে দেবে না */
+    justify-content: center !important; 
+    align-items: center !important;
+    gap: 8px !important;            /* বাটনগুলোর মাঝখানের গ্যাপ কমিয়ে দেওয়া হয়েছে */
+    margin-top: 20px;
+    width: 100% !important;
+    padding: 0 5px;
+}
+/* বাটনগুলোর ডিফল্ট সেটিংস */
+.social-links a {
+    text-decoration: none !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 4px !important;
+    padding: 5px 8px !important; /* নির্দিষ্ট প্যাডিং */
+    transition: background 0.2s ease !important; /* শুধু কালার চেঞ্জ হবে, সাইজ নয় */
+    white-space: nowrap !important;
+}
+
+/* আইকন সাইজ (আরও ছোট করা হয়েছে যেন এক লাইনে আটে) */
+.social-links i {
+    font-size: 18px !important;
+}
+
+/* লেখার সাইজ (আরও ছোট করা হয়েছে) */
+.social-links span {
+    font-size: 14px !important; 
+    font-weight: normal;
+    letter-spacing: -0.2px; /* অক্ষরের মাঝের দূরত্ব কমানো হয়েছে */
+}
+
+/* হভার করলে এরিয়া বড় হওয়া বন্ধ করার জন্য */
+.social-links a:hover {
+    transform: none !important; /* সাইজ বড় হওয়া বন্ধ করবে */
+    background: rgba(255, 255, 255, 0.1) !important; /* শুধু হালকা ব্যাকগ্রাউন্ড কালার হবে */
+    border-radius: 5px;
+    box-shadow: none !important; /* কোনো গ্লো বা ঝলকানি হবে না */
+}
+.highlight {
+    color: #FFD700; /* গোল্ডেন বা উজ্জ্বল হলুদ রঙ */
+    background: transparent; /* শুধু লেখার রঙ পরিবর্তন হবে */
+}
+
+/*-----------------*/
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 25px;
+    cursor: pointer;
+    color: #888;
+}
+
+.hidden { display: none !important; }
+
+
+
+.container { max-width: 600px; margin: 0 auto; padding: 15px; }
+.hidden { display: none !important; }
+
+header {
+    background: var(--primary); color: white; 
+    display: flex; align-items: center; position: sticky; top: 0; z-index: 1000;
+    box-shadow: 0 0px 6px black;
+}
+header p{
+    color: #fff;
+    font-size: 25px;
+    margin-left: 15px;
+}
+.menu-icon { font-size: 25px; cursor: pointer; 
+margin-left: 20px; 
+margin-bottom: 5px;
+}
+
+.hero-section {
+    border: solid 1px #0CFF17;
+    position: relative; height: 180px; border-radius: 10px;
+    overflow: hidden; margin-bottom: 20px;
+    box-shadow: 0 0px 6px black;
+}
+.hero-section img { width: 100%; height: 100%; object-fit: cover; 
+}
+
+.hero-overlay {
+    position: absolute; inset: 0; background: rgba(0,0,0,0.5);
+    display: flex; flex-direction: column; justify-content: center; align-items: center; color: white;
+}
+
+.search-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.square-btn {
+    border: solid 1px #0CFF17;
+    background: #023823; padding: 25px 10px; border-radius: 10px;
+    display: flex; flex-direction: column; align-items: center;
+    cursor: pointer; 
+    box-shadow: 0 0px 6px black;
+}
+/* মাউস উপরে গেলে (Hover) যা হবে */
+.square-btn:hover {
+    /* বাটনটি ৫ পিক্সেল উপরে উঠবে */
+    transform: translateY(-5px);
+    
+    /* উঁচু হওয়ার ভাব ফুটিয়ে তুলতে শ্যাডো একটু বাড়িয়ে দেওয়া হলো */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+    
+    /* বর্ডারের গ্লো চাইলে একটু বাড়াতে পারেন (ঐচ্ছিক) */
+    border-color: #50ff59;
+}
+.square-btn i { font-size: 30px; 
+color: var(--accent); 
+margin-bottom: 10px; }
+.square-btn { font-weight: bold; font-size: 14px; color: yellow; }
+
+/* মেইন কার্ডটি একটু ছোট এবং মাঝখানে থাকবে */
+.search-card {
+    max-width: 400px; /* কার্ডের সর্বোচ্চ চওড়া নির্ধারণ */
+    margin: 0 auto;
+    position: relative; /* মানচিত্র পজিশন করার জন্য */
+    background-color: var(--bg); 
+    padding: 20px;
+    border-radius: 15px;
+    border: 1.5px solid #0CFF17;
+    margin-bottom: 20px;
+    overflow: hidden; /* মানচিত্র কার্ডের বাইরে যাবে না */
+    z-index: 1;
+    
+    
+}
+
+/* কার্ডের ভেতরে মানচিত্র বসানোর জন্য ::before এলিমেন্ট */
+.search-card::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 65%;
+    height:65%;
+    
+    /* বাংলাদেশের মানচিত্রের স্বচ্ছ ইমেজ লিঙ্ক */
+background: url(../../media/photo/Daripalla_logo.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain; /* কার্ডের সাইজ অনুযায়ী সেট হবে */
+    
+    /* ওপাসিটি (Opacity) নিয়ন্ত্রণ - এখান থেকে ০.১ কমিয়ে বাড়িয়ে অ্যাডজাস্ট করতে পারেন */
+    opacity: 0.1; 
+    
+    z-index: -1; /* ইনপুট এবং বাটনের নিচে দেখাবে */
+}
+
+
+
+#search-title { 
+    text-align: center; 
+    margin-bottom: 20px; 
+    color: #fff; 
+    font-size: 20px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+/* ইনপুট গ্রুপগুলো পাশাপাশি সুন্দরভাবে সাজানোর জন্য */
+.field-group { 
+margin-top: 12px;
+}
+.input-wrapper { 
+    display: flex; 
+    gap: 8px; 
+    flex-wrap: wrap; /* ছোট স্ক্রিনে নিচে নেমে আসবে */
+}
+
+/* বক্সগুলো ছোট এবং টেক্সট অনুযায়ী করার জন্য */
+select, input {
+    background: #012b1b; /* একটু গাঢ় শেড */
+    color: #fff;
+    padding: 8px 12px; /* প্যাডিং কমিয়ে ছোট করা হয়েছে */
+    border-radius: 8px; 
+    font-size: 14px;
+    border: 1px solid #045d3b; /* সাদা বর্ডার বন্ধ করতে */
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+    outline: none;
+    flex: 1; /* বক্সগুলো সমানভাবে জায়গা নেবে */
+    min-width: 80px; /* খুব বেশি ছোট হওয়া রোধ করতে */
+    transition: 0.3s;
+}
+
+/* ফোকাস করলে বর্ডার হাইলাইট হবে */
+select:focus, input:focus {
+    border-color: #FCEE1F;
+    box-shadow: 0 0 8px rgba(252, 238, 31, 0.2);
+}
+
+/* সার্চ বাটনটি ছোট এবং আকর্ষণীয় */
+.search-btn {
+    width: auto; /* পুরো চওড়া না হয়ে লেখার মাপ অনুযায়ী হবে */
+    display: block;
+    margin: 20px auto 0; /* মাঝখানে রাখার জন্য */
+    padding: 10px 30px; 
+    background: #FCEE1F; /* হলুদ ব্যাকগ্রাউন্ড */
+    color: #023823; /* গাঢ় সবুজ টেক্সট */
+    border: none; 
+    border-radius: 10px; /* পিল শেপ বাটন */
+    font-weight: bold; 
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+.search-btn:hover {
+    background: #fff;
+    transform: translateY(-2px);
+}
+
+label { 
+    font-size: 11px; 
+    font-weight: bold; 
+    color: rgba(252, 238, 31, 0.8); 
+    display: block; 
+    margin-bottom: 4px; 
+    margin-left: 5px;
+}
+
+/* বাটন স্টাইল */
+.-btn {
+    width: 50%;
+    background: #006b3f; /* প্রফেশনাল গ্রাডিয়েন্ট সবুজ */
+    color: white;
+    padding: 14px 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 8px; /* কোনাগুলো হালকা রাউন্ড */
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease; /* অ্যানিমেশনের জন্য */
+    box-shadow: 0 4px 15px rgba(0, 69, 41, 0.2); /* হালকা শ্যাডো */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* মাউস হোভার করলে (Hover Effect) */
+.-btn:hover {
+    background: linear-gradient(135deg, #006b3f, #004529);
+    transform: translateY(-2px); /* হালকা উপরে উঠবে */
+    box-shadow: 0 6px 20px rgba(0, 69, 41, 0.3);
+}
+
+/* বাটন ক্লিক করলে (Active State) */
+.-btn:active {
+    transform: translateY(0); /* আগের জায়গায় ফিরে আসবে */
+    box-shadow: 0 2px 10px rgba(0, 69, 41, 0.2);
+    opacity: 0.9;
+}
+
+/* মোবাইল ডিভাইসের জন্য বাড়তি সুবিধা */
+@media (max-width: 600px) {
+    .-btn {
+        padding: 12px 15px;
+        font-size: 16px;
+    }
+}
+
+/* সাইড নেভিগেশন মেইন কন্টেইনার */
+.side-nav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    left: 0;
+    background: #004529;
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    box-shadow: 0 0px 6px black;
+}
+
+/* মেনু হেডার: লোগো এবং টেক্সট পাশাপাশি ও উপরে রাখার জন্য */
+.menu-header {
+    display: flex;         /* পাশাপাশি আনার জন্য */
+    align-items: center;   /* লোগো ও লেখাকে লম্বালম্বি সমান রাখার জন্য */
+    gap: 12px;             /* লোগো ও লেখার মাঝখানের দূরত্ব */
+    padding: 10px 15px;    /* একদম উপরে রাখার জন্য প্যাডিং কমিয়ে ১০ করা হয়েছে */
+    background: #023823;
+    box-shadow: 0 0px 6px black;
+}
+
+.menu-header img {
+    width: 50px;           /* লোগোর সাইজ কিছুটা এডজাস্ট করা হয়েছে */
+    height: auto;
+    display: block;
+}
+
+.menu-header h3 {
+    margin: 0;
+    font-size: 20px;
+    color: #fff;
+    font-weight: bold;
+    white-space: nowrap;   /* লেখা যেন ভেঙে নিচে না যায় */
+}
+
+/* মেনু আইটেমগুলো যেন না ভাঙে */
+.side-nav a {
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #FCEE1F;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    white-space: nowrap;    /* স্লাইড করার সময় লেখা ভাঙবে না */
+    transition: 0.2s;
+}
+
+.side-nav a:hover {
+    background: var(--bg);
+    color: white;
+    border-radius: 6px;
+}
+.overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1500;}
+
+/* মেইন ভোটার কার্ড */
+.voter-card {
+    border: solid 0.5px #0CFF17;
+    background: var(--primary); padding: 20px; border-radius: 15px; margin-top: 15px;
+    box-shadow: 0 0px 6px black;
+}
+.name-tag { font-size: 18px; font-weight: bold; 
+color: #fff; 
+display: block; margin-bottom: 10px; }
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.info-item { background: var(--bg);
+padding: 8px; border-radius: 8px; font-size: 12px; }
+.info-item b { display: block; color: #FCEE1F; font-size: 10px; }
+voterDob{
+    color: #fff;
+}
+#scanner-wrapper p {
+    color: #004529 !important; /* লেখাটিকে গাঢ় সবুজ করবে যাতে পরিষ্কার বোঝা যায় */
+    font-weight: 600;
+}
+.loader { text-align: center; padding: 20px; font-weight: bold; color: var(--accent); }
+#reader { width: 100%; border-radius: 10px; overflow: hidden; margin-bottom: 15px; }
+/* লোডার কন্টেইনার */
+.loader-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px; /* স্পিনার এবং লেখার দূরত্ব */
+    padding: 20px;
+    color: white;
+}
+
+/* গোল স্পিনার ডিজাইন */
+.circle-spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3); /* ঝাপসা বর্ডার */
+    border-top: 3px solid #FFD700; /* আপনার পছন্দের হলুদ কালার হাইলাইট */
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite; /* ঘোরার এনিমেশন */
+}
+
+/* ঘোরার এনিমেশন লজিক */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+/* স্লাইডার মেনুর আইটেম সেটআপ */
+.menu-item-switch {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+/* সুইচ বাটন ডিজাইন */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 22px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #4CAF50; /* অফ অবস্থায় সবুজ */
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3; /* অন অবস্থায় নীল */
+}
+
+input:checked + .slider:before {
+  transform: translateX(23px);
+}
+
+/* গোল সুইচ */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+/* ক্লিক করার সময় যে সাদা বা ধূসর আবরণ আসে তা দূর করার জন্য */
+a, p, span, div {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+/* যদি ক্লিকের সময় টেক্সট সিলেক্ট হয়ে যায় সেটা বন্ধ করতে */
+.no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+
+/*অ্যাপ ইনস্টল*/
+.install-slider {
+    position: fixed;
+    bottom: -120px; /* শুরুতে নিচে লুকানো */
+    left: 0;
+    width: 100%;
+    background: #023823;
+    color: white;
+    padding: 15px 10px; /* ডানে বামে প্যাডিং কমানো হয়েছে */
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.4);
+    transition: bottom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 10000;
+    border-top: 3px solid #0CFF17;
+    box-sizing: border-box; /* এটি বাটনকে স্ক্রিনের ভেতরে রাখতে সাহায্য করবে */
+    
+}
+
+.slider-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* কন্টেন্টগুলোকে দুই পাশে সরিয়ে দেবে */
+    max-width: 100%;
+    gap: 10px;
+}
+
+.icon-box {
+    font-size: 24px;
+    color: #0CFF17;
+    min-width: 30px;
+}
+
+.text-info {
+    flex: 1; /* টেক্সট এরিয়াটি মাঝখানের সব জায়গা দখল করবে */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.text-info strong {
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.text-info span {
+    font-size: 11px;
+    color: #adadad;
+}
+
+#install-btn {
+    background: #0CFF17;
+    color: #000;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+#close-slider {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0; /* বাটনটি যেন ছোট হয়ে না যায় */
+}
+
+.show-slider { bottom: 0 !important; }
+
+.stats-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border: 1px solid #004529;
+    font-size: 14px;
+}
+
+
+
+
+
+
+.suggestion-style {
+    position: absolute;
+    /* প্লেসহোল্ডার বা ইনপুট থেকে কিছুটা নিচে নামানোর জন্য ৫-৮ পিক্সেল গ্যাপ */
+    top: calc(100% + 8px); 
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    /* বর্ডার হালকা করে সুন্দর করা হয়েছে */
+    border: 1px solid rgba(0, 69, 41, 0.2); 
+    border-radius: 12px;
+    max-height: 250px;
+    overflow-y: auto;
+    /* নিচের কার্ডগুলোর উপরে যাতে ভেসে থাকে */
+    z-index: 9999; 
+    /* প্রিমিয়াম শ্যাডো ইফেক্ট */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    /* স্ক্রলবার হাইড বা কাস্টম করার জন্য */
+    scrollbar-width: thin;
+}
+
+/* সুন্দর স্ক্রলবার (Chrome, Safari এর জন্য) */
+.suggestion-style::-webkit-scrollbar {
+    width: 6px;
+}
+.suggestion-style::-webkit-scrollbar-thumb {
+    background: #004529;
+    border-radius: 10px;
+}
+
+.suggestion-item {
+    padding: 12px 16px;
+    cursor: pointer;
+    border-bottom: 1px solid #f1f1f1;
+    text-align: left;
+    font-size: 15px;
+    color: #444;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+/* শেষের আইটেমের বর্ডার থাকবে না */
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+/* হোভার করলে কালার এবং হালকা বাম দিকে সরে আসার ইফেক্ট */
+.suggestion-item:hover {
+    background-color: #f0fdf4;
+    color: #004529;
+    padding-left: 20px; /* একটু এনিমেশন ফিল দিবে */
+    font-weight: 500;
+}
+
+/* আইকন থাকলে সেটির জন্য গ্যাপ */
+.suggestion-item i {
+    margin-right: 10px;
+    color: #004529;
+    opacity: 0.7;
+}
+
+.hidden { 
+    display: none !important; 
+}
+
+.dark-mode .stats-card {
+    background: #2d2d2d;
+    color: #fff;
+    border-color: #0cff17;
+}
+
+.dark-mode .stats-card div {
+    background: #3d3d3d !important;
+    border-color: #555 !important;
+}
+.main-footer {
+        background: #1a1a1a;
+        color: #ddd;
+        padding: 40px 0 0;
+        font-family: 'Hind Siliguri', sans-serif;
+        margin-top: 50px;
+        border-top: 4px solid var(--border);
+        text-align: left; /* সব সময় বামে থাকবে */
+    }
+
+    .footer-container {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 20px;
+        justify-content: space-between;
+    }
+
+    .footer-section {
+        flex: 1;
+        min-width: 250px;
+        margin-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* কন্টেন্ট বামে রাখবে */
+    }
+
+    .footer-logo {
+        color: #fff;
+        margin-bottom: 15px;
+        font-size: 22px;
+        text-align: left;
+    }
+    .footer-logo span {
+        color: var(--border);
+    }
+    .footer-section p {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #bbb;
+        text-align: left;
+        margin: 0;
+    }
+
+    .social-icons a {
+        color: #fff;
+        font-size: 20px;
+        margin-right: 15px;
+        transition: 0.3s;
+        display: inline-block;
+    }
+    .social-icons a:hover {
+        color: var(--border);
+        transform: translateY(-5px);
+    }
+
+    .footer-section h3 {
+        color: #fff;
+        font-size: 18px;
+        margin-bottom: 20px;
+        position: relative;
+        text-align: left;
+        width: 100%;
+    }
+    .footer-section h3::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        width: 40px;
+        height: 2px;
+         }
+    .footer-section ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+    .footer-section ul li {
+        margin-bottom: 10px;
+        text-align: left;
+    }
+    .footer-section ul li a {
+        color: #bbb;
+        text-decoration: none;
+        font-size: 14.5px;
+        transition: 0.3s;
+        display: block;
+    }
+    .footer-section ul li a:hover {
+        color: #fff;
+        padding-left: 8px;
+    }
+
+    .footer-section.contact p {
+        margin-bottom: 10px;
+        width: 100%;
+        text-align: left;
+    }
+    .footer-section.contact i {
+        margin-right: 10px;
+        color: var(--border);
+    }
+
+    .footer-bottom {
+        background: #111;
+        text-align: center; /* শুধু কপিরাইট লেখাটা মাঝখানে থাকবে, এটা স্ট্যান্ডার্ড */
+        padding: 20px 0;
+        margin-top: 20px;
+        border-top: 1px solid #333;
+    }
+    .footer-bottom p {
+        font-size: 13px;
+        margin: 5px 0;
+        color: #888;
+    }
+
+    /* মোবাইল রেসপন্সিভ - এখন ডেস্কটপের মতোই বামে থাকবে */
+    @media (max-width: 768px) {
+        .footer-container {
+            flex-direction: column;
+            text-align: left; /* মোবাইলেও বামে */
+        }
+        .footer-section {
+            align-items: flex-start; /* মোবাইলেও বামে */
+            margin-bottom: 35px;
+        }
+        .footer-section h3::after {
+            left: 0; /* দাগ বামেই থাকবে */
+            transform: none;
+        }
+    }
+    
+/* পরিসংখ্যান কার্ডে এনিমেশন */
+#home-stats-card:not(.hidden) {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+#home-ward-grid div {
+    animation: fadeIn 0.8s ease forwards;
+}
+
+
+
+
+
+
+.processing-container {
+        margin-top: 30px;
+        text-align: center;
+        font-family: 'Hind Siliguri', sans-serif;
+        padding: 20px;
+        background: #f9f9f9;
+        border-radius: 15px;
+        border: 1px dashed #0cff17;
+    }
+
+    /* টেক্সট অ্যানিমেশন */
+    .processing-text {
+        font-size: 18px;
+        color: #023823;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    /* ডট অ্যানিমেশন (...) */
+    .dots {
+        display: inline-block;
+        width: 1em;
+        text-align: left;
+        animation: dot-blink 1.5s infinite;
+    }
+
+    @keyframes dot-blink {
+        0% { content: '.'; }
+        33% { content: '..'; }
+        66% { content: '...'; }
+    }
+
+    /* প্রগ্রেস বার ডিজাইন */
+    .progress-bar-container {
+        width: 100%;
+        max-width: 250px;
+        height: 6px;
+        background: #e0e0e0;
+        border-radius: 10px;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .progress-bar-fill {
+        width: 40%;
+        height: 100%;
+        background: linear-gradient(90deg, #023823, #0cff17);
+        border-radius: 10px;
+        animation: progress-move 2s infinite ease-in-out;
+    }
+
+    @keyframes progress-move {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(250%); }
+    }
+
+    /* ওপরের ছোট ডট অ্যানিমেশন */
+    .loader-dots {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+        margin-bottom: 10px;
+    }
+
+    .loader-dots span {
+        width: 8px;
+        height: 8px;
+        background: #023823;
+        border-radius: 50%;
+        animation: bounce 0.6s infinite alternate;
+    }
+
+    .loader-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .loader-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes bounce {
+        from { transform: translateY(0); opacity: 1; }
+        to { transform: translateY(-8px); opacity: 0.3; }
+    }
