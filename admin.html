@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ভোটার ডাটা এন্ট্রি - প্রো প্যানেল</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #004529;
+            --secondary: #1a73e8;
+            --bg: #f3f4f6;
+            --card-bg: #ffffff;
+            --text: #333;
+            --border: #d1d5db;
+        }
+
+        body { 
+            font-family: 'SolaimanLipi', sans-serif; 
+            background-color: var(--bg); 
+            margin: 0; 
+            padding: 10px; 
+            color: var(--text);
+        }
+
+        .admin-container { 
+            width: 100%;
+            max-width: 650px;
+            margin: auto;
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-sizing: border-box;
+        }
+
+        .header-section { text-align: center; margin-bottom: 15px; }
+        .ec-logo { width: 50px; }
+        h2 { color: var(--primary); font-size: 18px; margin: 5px 0; }
+
+        /* সিলেকশন এরিয়া */
+        .selection-panel {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            background: #f0fdf4;
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #dcfce7;
+        }
+
+        /* ইনপুট গ্রিড */
+        .input-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px; 
+            margin-bottom: 15px; 
+        }
+
+        .full-row { grid-column: span 2; }
+        .field-box { display: flex; flex-direction: column; }
+        
+        label { font-size: 12px; font-weight: bold; margin-bottom: 4px; color: #555; display: flex; align-items: center; gap: 4px;}
+        label i { color: var(--primary); font-size: 11px; }
+
+        input, select, textarea { 
+            height: 38px; 
+            padding: 5px 10px; 
+            border: 1px solid var(--border); 
+            border-radius: 6px; 
+            font-size: 13px; 
+            outline: none;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        textarea { height: auto; resize: vertical; }
+        input:focus, textarea:focus { border-color: var(--secondary); }
+
+        /* বাটন স্টাইল */
+        .save-btn { 
+            width: 100%; 
+            padding: 12px; 
+            background: var(--primary); 
+            color: white; 
+            border: none; 
+            border-radius: 8px; 
+            font-size: 16px; 
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .bulk-btn { background: #1a73e8; margin-top: 10px; }
+        
+        #status { font-size: 14px; display: block; margin: 10px 0; font-weight: bold; text-align: center; color: var(--secondary); }
+        #subAreaBox { display: none; grid-column: span 2; background: #fffbeb; padding: 8px; border-radius: 6px; border: 1px solid #fef3c7; }
+
+        .divider { border-top: 2px dashed #ddd; margin: 25px 0; position: relative; }
+        .divider span { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #fff; padding: 0 10px; color: #999; font-size: 12px; }
+        
+        #admin-login-overlay {
+        position: fixed;
+        inset: 0;
+        background: #023823; /* আপনার সাইটের থিম কালার */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        font-family: 'Hind Siliguri', sans-serif;
+    }
+
+    .login-card {
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        width: 70%;
+        max-width: 350px;
+        text-align: center;
+        animation: slideUp 0.5s ease;
+    }
+
+    @keyframes slideUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .login-header i {
+        font-size: 50px;
+        color: #023823;
+        margin-bottom: 10px;
+    }
+
+    .login-header h2 {
+        margin: 0;
+        color: #333;
+        font-size: 22px;
+    }
+
+    .login-header p {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    #admin-pass {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #ddd;
+        border-radius: 10px;
+        font-size: 16px;
+        text-align: center;
+        outline: none;
+        transition: 0.3s;
+        box-sizing: border-box;
+    }
+
+    #admin-pass:focus {
+        border-color: #0CFF17;
+    }
+
+    .login-body button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 15px;
+        background: #023823;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+    .login-body button:hover {
+        background: #004d32;
+    }
+
+    #error-msg {
+        color: red;
+        font-size: 13px;
+        margin-top: 10px;
+    }
+
+    .hidden { display: none; }
+    </style>
+</head>
+<body>
+<!-- লগইন ওভারলে -->
+<div id="admin-login-overlay">
+    <div class="login-card">
+        <div class="login-header">
+            <i class="fas fa-user-shield"></i>
+            <h2>এডমিন প্যানেল</h2>
+            <p>প্রবেশ করতে গোপন পিন কোড দিন</p>
+        </div>
+        <div class="login-body">
+            <input type="password" id="admin-pass" placeholder="পিন কোড লিখুন..." maxlength="10">
+            <button onclick="validateAdmin()">প্রবেশ করুন</button>
+            <p id="error-msg" class="hidden">ভুল পাসওয়ার্ড! আবার চেষ্টা করুন।</p>
+        </div>
+    </div>
+</div>
+
+<!-- আপনার এডমিন প্যানেলের আসল কন্টেন্ট এটাকে একটা ডিভ-এ রাখুন -->
+<div id="admin-content" style="display: none;">
+    <!-- এখানে আপনার সব এডমিন কোড থাকবে -->
+</div>
+
+<div class="admin-container">
+    <div class="header-section">
+
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/%E0%A6%AC%E0%A6%BE%E0%A6%82%E0%A6%B2%E0%A6%BE%E0%A6%A6%E0%A7%87%E0%A6%B6_%E0%A6%A8%E0%A6%BF%E0%A6%B0%E0%A7%8D%E0%A6%AC%E0%A6%BE%E0%A6%9A%E0%A6%A8_%E0%A6%95%E0%A6%AE%E0%A6%BF%E0%A6%B6%E0%A6%A8%E0%A7%87%E0%A6%B0_%E0%A6%B2%E0%A7%8B%E0%A6%97%E0%A7%8B.svg" alt="EC Logo" class="ec-logo">
+        <h2>🗳️ ভোটার ডাটাবেজ কন্ট্রোল প্যানেল</h2>
+    </div>
+
+    <div class="selection-panel">
+        <div class="field-box">
+            <label>উপজেলা</label>
+            <select id="upazila" onchange="updateUnions()">
+                <option value="">সিলেক্ট</option>
+                <option value="নাগেশ্বরী">নাগেশ্বরী</option>
+                <option value="ভূরুঙ্গামারী">ভূরুঙ্গামারী</option>
+            </select>
+        </div>
+        <div class="field-box">
+            <label>ইউনিয়ন</label>
+            <select id="union" onchange="checkSpecialWard()">
+                <option value="">সিলেক্ট</option>
+            </select>
+        </div>
+        <div class="field-box">
+            <label>ওয়ার্ড</label>
+            <select id="ward" onchange="checkSpecialWard()">
+                <option value="1">১</option><option value="2">২</option><option value="3">৩</option>
+                <option value="4">৪</option><option value="5">৫</option><option value="6">৬</option>
+                <option value="7">৭</option><option value="8">৮</option><option value="9">৯</option>
+            </select>
+        </div>
+        <div class="field-box">
+            <label>লিঙ্গ</label>
+            <select id="gender">
+                <option value="পুরুষ">পুরুষ</option>
+                <option value="নারী">নারী</option>
+            </select>
+        </div>
+<div id="subAreaBox" class="hidden" class="field-group">
+    <label>বিশেষ মহল্লা/এলাকা</label>
+    <select id="subArea" onchange="updateLiveCount();">
+        <!-- এখানে অপশনগুলো ডাইনামিকালি আসবে -->
+    </select>
+</div>
+
+    </div>
+
+    <div id="status">সিস্টেম রেডি</div>
+
+    <div class="input-grid">
+        <div class="field-box"><label><i class="fas fa-list-ol"></i> সিরিয়াল</label><input type="text" id="serial" placeholder="০০১"></div>
+        <div class="field-box"><label><i class="fas fa-user"></i> নাম</label><input type="text" id="name" placeholder="নাম"></div>
+        <div class="field-box"><label><i class="fas fa-id-card"></i> আইডি</label><input type="text" id="voter_id" placeholder="আইডি নং"></div>
+        <div class="field-box"><label><i class="fas fa-calendar"></i> জন্ম তারিখ</label><input type="text" id="dob" placeholder="২১/০৩/১৯৮৭"></div>
+        <div class="field-box"><label><i class="fas fa-user-tie"></i> পিতা</label><input type="text" id="father" placeholder="পিতার নাম"></div>
+        <div class="field-box"><label><i class="fas fa-user-tag"></i> মাতা</label><input type="text" id="mother" placeholder="মাতার নাম"></div>
+        <div class="field-box full-row"><label><i class="fas fa-map-marker-alt"></i> ঠিকানা</label><input type="text" id="address" placeholder="গ্রাম, ইউনিয়ন, উপজেলা"></div>
+    </div>
+
+    <button onclick="saveSingleEntry()" id="saveBtn" class="save-btn">
+        <i class="fas fa-save"></i> একটি ডাটা সেভ করুন
+    </button>
+
+    <div class="divider"><span>অথবা</span></div>
+
+    <div class="field-box full-row">
+        <label style="color: #1a73e8;"><i class="fas fa-paste"></i> একসাথে অনেক ডাটা পেস্ট করুন</label>
+        <textarea id="bulkInput" rows="8" placeholder="০০০১. নাম: মোছাঃ ইয়াছমিন খাতুন
+ভোটার নং: ৪৯০১৪৬৩৩৪৪৮৩...
+---------------------------"></textarea>
+        <button onclick="bulkUpload()" id="bulkBtn" class="save-btn bulk-btn">
+            <i class="fas fa-cloud-upload-alt"></i> একসাথে সব আপলোড করুন
+        </button>
+    </div>
+</div>
+
+
+    <!-- মিসিং সিরিয়াল চেকার সেকশন -->
+    <div class="divider"><span>টুলস</span></div>
+    
+    <div style="background: #fff4e5; padding: 15px; border-radius: 10px; border: 1px solid #ffe2b7; margin-bottom: 20px;">
+        <h3 style="font-size: 14px; margin-top: 0; color: #856404;"><i class="fas fa-search-minus"></i> সিরিয়াল গ্যাপ চেকার</h3>
+        <p style="font-size: 11px; color: #666; margin-bottom: 10px;">সিলেক্ট করা ইউনিয়ন, ওয়ার্ড ও লিঙ্গ অনুযায়ী ডেটাবেসে কোনো সিরিয়াল মিসিং আছে কি না তা বের করুন।</p>
+        
+        <button onclick="checkMissingSerials()" id="checkBtn" class="save-btn" style="background: #ed8936; font-size: 14px;">
+            <i class="fas fa-microscope"></i> মিসিং সিরিয়াল চেক করুন
+        </button>
+        
+        <div id="missing-result-area" style="margin-top: 15px;"></div>
+    </div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script src="data/js/admin.js"></script>
+</body>
+</html>

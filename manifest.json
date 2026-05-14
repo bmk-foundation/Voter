@@ -1,0 +1,67 @@
+{
+  "name": "ভোটার তথ্য সেবা - ৩নং বামনডাঙ্গা ইউনিয়ন",
+  "short_name": "ভোটার তথ্য",
+  "description": "কুড়িগ্রাম, নাগেশ্বরী - ৩নং বামনডাঙ্গা ইউনিয়নের ডিজিটাল ভোটার লিস্ট ও সিরিয়াল অনুসন্ধান পোর্টাল।",
+  "id": "voter-portal-bamondanga",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
+  "background_color": "#023823",
+  "theme_color": "#023823",
+  "orientation": "portrait",
+  "scope": "/",
+  "lang": "bn",
+  "dir": "ltr",
+  "categories": ["social", "election", "utilities"],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "media/photo/Logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/icon-logo.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "নাম দিয়ে অনুসন্ধান",
+      "short_name": "নাম সার্চ",
+      "url": "/index.html?search=name",
+      "icons": [{ "src": "media/photo/name search.jpg", "sizes": "96x96" }]
+    },
+    {
+      "name": "জন্ম তারিখ দিয়ে অনুসন্ধান",
+      "short_name": "DOB সার্চ",
+      "url": "/index.html?search=dob",
+      "icons": [{ "src": "media/photo/dob search.jpg", "sizes": "96x96" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "media/photo/mobile view.jpg",
+      "sizes": "720x1280",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "মোবাইল ভিউ"
+    },
+    {
+      "src": "media/photo/desktop view.jpg",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "ডেস্কটপ ভিউ"
+    }
+  ]
+}
