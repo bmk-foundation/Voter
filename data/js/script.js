@@ -929,7 +929,7 @@ function checkAdStatus() {
 
     const lastAdTime = localStorage.getItem('last_ad_timestamp');
     const currentTime = new Date().getTime();
-    const twentyMinutes = 1 * 60 * 60; // ২০ মিনিট মিলিসেকেন্ডে
+    const twentyMinutes = 20 * 60 * 1000; // ২০ মিনিট মিলিসেকেন্ডে
 
     if (!lastAdTime || (currentTime - lastAdTime) > twentyMinutes) {
         showAd();
